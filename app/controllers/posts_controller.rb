@@ -4,12 +4,13 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = Post.all
-    render  json: {status: 200, message: "message", data: @posts}
+    #render  json: {status: 200, message: "message", data: @posts}
   end
 
   # GET /posts/1 or /posts/1.json
   def show
     #GuestsCleanupJob.perform_later(params[:id])
+    render :show
     GuestsCleanupJob.set(wait: 1.minutes).perform_later(params[:id])
   end
 
