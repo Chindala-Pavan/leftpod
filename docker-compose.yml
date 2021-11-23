@@ -1,0 +1,16 @@
+version: "2.2"
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: pavan
+      POSTGRES_PASSWORD: pavan@123
+      POSTGRES_DB: Blog_test
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      BLOG_DATABASE_PASSWORD: pavan@123
